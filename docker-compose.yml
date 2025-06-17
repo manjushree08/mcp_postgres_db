@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  mcp-database-server:
+    build: .
+    container_name: mcp-db-server
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    ports:
+      - "8080:8080"
+    # Uncomment if you want to use environment file
+    # env_file:
+    #   - .env
+    stdin_open: true
+    tty: true
+    networks:
+      - mcp-network
+
+networks:
+  mcp-network:
+    driver: bridge
